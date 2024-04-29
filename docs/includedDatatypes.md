@@ -4,6 +4,8 @@ The following datatypes are included in this pack
 
 ## Alias
 
-## Structures
-
 ## Enums
+
+\_ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.CSS_DEFAULT)
+
+## Structures
