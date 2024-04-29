@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="VisionDatatypePack" Id="{faa9ad1a-2b24-4d20-95e0-67a7c7e3da9c}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK VisionDatatypePack IMPLEMENTS I_DatatypePack
+VAR
+	// alias
+	
+	// enums
+	_eTcVn2dCodeSearchStrategy : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+	
+	// structures
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="RegisterWith" Id="{e0f84940-a921-4fc9-8944-9e8dd00778cd}">
+      <Declaration><![CDATA[METHOD RegisterWith
+VAR_INPUT
+	Datatypes : I_Datatypes;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Datatypes.RegisterDatatype(_eTcVn2dCodeSearchStrategy);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
