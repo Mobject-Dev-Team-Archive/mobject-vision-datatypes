@@ -36,7 +36,7 @@
     <CombineIds>true</CombineIds>
   </PropertyGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-datatypes,0.5.0,mobject">
+    <LibraryReference Include="mobject-datatypes,0.6.0,mobject">
       <Namespace>mobject_datatypes</Namespace>
     </LibraryReference>
     <LibraryReference Include="mobject-deserialization,0.1.0,mobject">
