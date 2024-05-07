@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_ETcVnColorSpaceTransform" Id="{2414eea1-82eb-0add-38e9-8482c4b7cfc3}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _ETcVnColorSpaceTransform EXTENDS EnumDatatypeBase
+VAR
+	localData : ETcVnColorSpaceTransform;
+	activeData : REFERENCE TO ETcVnColorSpaceTransform;
+	enumBaseDatatype : _DINT(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{5caff01a-5d5d-0c2d-26fa-3ef9e95fbd75}" />
+    <Folder Name="Private" Id="{aed6b76d-61a2-0e5a-0a0e-a5b6f19f6903}" />
+    <Folder Name="Protected" Id="{df47cb81-c369-0904-3f4a-173eb5f41cc7}" />
+    <Method Name="AddLocalEnumeration" Id="{2ad7d825-a6c7-06c8-0953-f13296801822}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : ETcVnColorSpaceTransform;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{7ece2287-08bb-024b-38c2-416f3301f8e6}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{a1007b98-4b0b-05c6-0f6c-52fb016d7c11}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{a88e7b7d-68c5-01cd-0e3e-549b699580e7}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{1d87edc6-6d9d-002e-1525-376e481139f4}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _ETcVnColorSpaceTransform;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_ETcVnColorSpaceTransform(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{7ca245b1-0dfa-0315-1cc6-a96c1d035eef}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : ETcVnColorSpaceTransform;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('TCVN_CST_BGR_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_RGB_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_BGR);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_RGB_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_RGB);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BGR_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_RGB);
+AddLocalEnumeration('TCVN_CST_RGB_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BGR_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_RGB_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_BGR);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_RGB);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_RGB_TO_BGR_565', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_BGR_565);
+AddLocalEnumeration('TCVN_CST_BGR_TO_BGR_565', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_BGR_565);
+AddLocalEnumeration('TCVN_CST_BGR_565_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BGR_565_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_565_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BGR_565_TO_BGR);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_BGR_565', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_BGR_565);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_BGR_565', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_BGR_565);
+AddLocalEnumeration('TCVN_CST_BGR_565_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BGR_565_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BGR_565_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BGR_565_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_BGR_565', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_BGR_565);
+AddLocalEnumeration('TCVN_CST_BGR_565_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BGR_565_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_RGB_TO_BGR_555', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_BGR_555);
+AddLocalEnumeration('TCVN_CST_BGR_TO_BGR_555', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_BGR_555);
+AddLocalEnumeration('TCVN_CST_BGR_555_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BGR_555_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_555_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BGR_555_TO_BGR);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_BGR_555', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_BGR_555);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_BGR_555', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_BGR_555);
+AddLocalEnumeration('TCVN_CST_BGR_555_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BGR_555_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BGR_555_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BGR_555_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_GRAY_TO_BGR_555', ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_BGR_555);
+AddLocalEnumeration('TCVN_CST_BGR_555_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BGR_555_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_BGR_TO_XYZ', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_XYZ);
+AddLocalEnumeration('TCVN_CST_RGB_TO_XYZ', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_XYZ);
+AddLocalEnumeration('TCVN_CST_XYZ_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_XYZ_TO_BGR);
+AddLocalEnumeration('TCVN_CST_XYZ_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_XYZ_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_TO_YCRCB', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_YCRCB);
+AddLocalEnumeration('TCVN_CST_RGB_TO_YCRCB', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_YCRCB);
+AddLocalEnumeration('TCVN_CST_YCRCB_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YCRCB_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YCRCB_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YCRCB_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_TO_HSV', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_HSV);
+AddLocalEnumeration('TCVN_CST_RGB_TO_HSV', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_HSV);
+AddLocalEnumeration('TCVN_CST_BGR_TO_LAB', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_LAB);
+AddLocalEnumeration('TCVN_CST_RGB_TO_LAB', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_LAB);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_BGR);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BGR_TO_LUV', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_LUV);
+AddLocalEnumeration('TCVN_CST_RGB_TO_LUV', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_LUV);
+AddLocalEnumeration('TCVN_CST_BGR_TO_HLS', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_HLS);
+AddLocalEnumeration('TCVN_CST_RGB_TO_HLS', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_HLS);
+AddLocalEnumeration('TCVN_CST_HSV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_HSV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_HSV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_HSV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_LAB_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_LAB_TO_BGR);
+AddLocalEnumeration('TCVN_CST_LAB_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_LAB_TO_RGB);
+AddLocalEnumeration('TCVN_CST_LUV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_LUV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_LUV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_LUV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_HLS_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_HLS_TO_BGR);
+AddLocalEnumeration('TCVN_CST_HLS_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_HLS_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_BGR_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_BGR_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_BGR_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_BGR_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_BGR_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_BGR_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_BGR_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_BGR_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_RGB_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_RGB_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_RGB_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_RGB_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_RGB_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_RGB_VNG);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_RGB_VNG', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_RGB_VNG);
+AddLocalEnumeration('TCVN_CST_BGR_TO_HSV_FULL', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_HSV_FULL);
+AddLocalEnumeration('TCVN_CST_RGB_TO_HSV_FULL', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_HSV_FULL);
+AddLocalEnumeration('TCVN_CST_BGR_TO_HLS_FULL', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_HLS_FULL);
+AddLocalEnumeration('TCVN_CST_RGB_TO_HLS_FULL', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_HLS_FULL);
+AddLocalEnumeration('TCVN_CST_HSV_TO_BGR_FULL', ETcVnColorSpaceTransform.TCVN_CST_HSV_TO_BGR_FULL);
+AddLocalEnumeration('TCVN_CST_HSV_TO_RGB_FULL', ETcVnColorSpaceTransform.TCVN_CST_HSV_TO_RGB_FULL);
+AddLocalEnumeration('TCVN_CST_HLS_TO_BGR_FULL', ETcVnColorSpaceTransform.TCVN_CST_HLS_TO_BGR_FULL);
+AddLocalEnumeration('TCVN_CST_HLS_TO_RGB_FULL', ETcVnColorSpaceTransform.TCVN_CST_HLS_TO_RGB_FULL);
+AddLocalEnumeration('TCVN_CST_LBGR_TO_LAB', ETcVnColorSpaceTransform.TCVN_CST_LBGR_TO_LAB);
+AddLocalEnumeration('TCVN_CST_LRGB_TO_LAB', ETcVnColorSpaceTransform.TCVN_CST_LRGB_TO_LAB);
+AddLocalEnumeration('TCVN_CST_LBGR_TO_LUV', ETcVnColorSpaceTransform.TCVN_CST_LBGR_TO_LUV);
+AddLocalEnumeration('TCVN_CST_LRGB_TO_LUV', ETcVnColorSpaceTransform.TCVN_CST_LRGB_TO_LUV);
+AddLocalEnumeration('TCVN_CST_LAB_TO_LBGR', ETcVnColorSpaceTransform.TCVN_CST_LAB_TO_LBGR);
+AddLocalEnumeration('TCVN_CST_LAB_TO_LRGB', ETcVnColorSpaceTransform.TCVN_CST_LAB_TO_LRGB);
+AddLocalEnumeration('TCVN_CST_LUV_TO_LBGR', ETcVnColorSpaceTransform.TCVN_CST_LUV_TO_LBGR);
+AddLocalEnumeration('TCVN_CST_LUV_TO_LRGB', ETcVnColorSpaceTransform.TCVN_CST_LUV_TO_LRGB);
+AddLocalEnumeration('TCVN_CST_BGR_TO_YUV', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_YUV);
+AddLocalEnumeration('TCVN_CST_RGB_TO_YUV', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_YUV);
+AddLocalEnumeration('TCVN_CST_YUV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV12_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV12_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV12_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV12_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV21_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV21_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV21_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV21_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_SP_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_SP_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_SP_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_SP_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV12_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV12_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV12_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV12_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV21_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV21_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV21_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV21_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_SP_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_SP_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_SP_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_SP_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_YV12_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_YV12_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_YV12_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_YV12_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_IYUV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_IYUV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_IYUV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_IYUV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_I420_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_I420_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_I420_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_I420_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_P_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_P_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_420_P_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_P_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_420_YV12_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_YV12_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_YV12_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_YV12_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_IYUV_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_IYUV_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_IYUV_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_IYUV_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_I420_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_I420_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_I420_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_I420_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_P_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_P_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_420_P_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_P_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_420_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV21_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV21_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_NV12_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_NV12_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_YV12_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_YV12_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_IYUV_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_IYUV_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_I420_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_I420_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_SP_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_SP_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_420_P_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_420_P_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYVY_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYVY_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYVY_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYVY_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_Y422_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_Y422_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_Y422_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_Y422_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYNV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYNV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYNV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYNV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYVY_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYVY_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYVY_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYVY_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_Y422_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_Y422_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_Y422_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_Y422_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYNV_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYNV_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYNV_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYNV_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUY2_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUY2_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUY2_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUY2_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_YVYU_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YVYU_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_YVYU_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YVYU_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUYV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUYV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUYV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUYV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUNV_TO_RGB', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUNV_TO_RGB);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUNV_TO_BGR', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUNV_TO_BGR);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUY2_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUY2_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUY2_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUY2_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YVYU_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YVYU_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YVYU_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YVYU_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUYV_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUYV_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUYV_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUYV_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUNV_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUNV_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUNV_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUNV_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYVY_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYVY_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUY2_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUY2_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_Y422_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_Y422_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_UYNV_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_UYNV_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_YVYU_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YVYU_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUYV_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUYV_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_YUV_422_YUNV_TO_GRAY', ETcVnColorSpaceTransform.TCVN_CST_YUV_422_YUNV_TO_GRAY);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_PREMULTIPLICATED_RGBA', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_PREMULTIPLICATED_RGBA);
+AddLocalEnumeration('TCVN_CST_PREMULTIPLICATED_RGBA_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_PREMULTIPLICATED_RGBA_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_RGB_TO_YUV_420_I420', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_YUV_420_I420);
+AddLocalEnumeration('TCVN_CST_BGR_TO_YUV_420_I420', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_YUV_420_I420);
+AddLocalEnumeration('TCVN_CST_RGB_TO_YUV_420_IYUV', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_YUV_420_IYUV);
+AddLocalEnumeration('TCVN_CST_BGR_TO_YUV_420_IYUV', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_YUV_420_IYUV);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_YUV_420_I420', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_YUV_420_I420);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_YUV_420_I420', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_YUV_420_I420);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_YUV_420_IYUV', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_YUV_420_IYUV);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_YUV_420_IYUV', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_YUV_420_IYUV);
+AddLocalEnumeration('TCVN_CST_RGB_TO_YUV_420_YV12', ETcVnColorSpaceTransform.TCVN_CST_RGB_TO_YUV_420_YV12);
+AddLocalEnumeration('TCVN_CST_BGR_TO_YUV_420_YV12', ETcVnColorSpaceTransform.TCVN_CST_BGR_TO_YUV_420_YV12);
+AddLocalEnumeration('TCVN_CST_RGBA_TO_YUV_420_YV12', ETcVnColorSpaceTransform.TCVN_CST_RGBA_TO_YUV_420_YV12);
+AddLocalEnumeration('TCVN_CST_BGRA_TO_YUV_420_YV12', ETcVnColorSpaceTransform.TCVN_CST_BGRA_TO_YUV_420_YV12);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_BGR_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_BGR_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_BGR_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_BGR_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_BGR_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_BGR_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_BGR_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_BGR_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_RGB_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_RGB_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_RGB_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_RGB_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_RGB_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_RGB_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_RGB_EA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_RGB_EA);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_BGRA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_BGRA);
+AddLocalEnumeration('TCVN_CST_BAYER_RG_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_RG_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BAYER_GR_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BAYER_BG_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_BG_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_BAYER_GB_TO_RGBA', ETcVnColorSpaceTransform.TCVN_CST_BAYER_GB_TO_RGBA);
+AddLocalEnumeration('TCVN_CST_MAX', ETcVnColorSpaceTransform.TCVN_CST_MAX);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{693a3dfe-11d4-0770-3844-87fdcc41ef1b}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{8c4e1461-cae4-0754-1dd9-1f49c3a52e2d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'ETcVnColorSpaceTransform';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{1bf9e211-48f8-09d3-3d67-aaeaba166006}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : ETcVnColorSpaceTransform;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{7688947d-3dc7-0ca5-1fea-9f409a5f3c8b}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO ETcVnColorSpaceTransform;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{80c0d8af-3a61-0bcd-0d02-40e7c6b8fed8}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{c02f0e3b-c4f4-0ec3-1c00-8de48eeffed6}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{57242abf-a54b-0dea-209a-17a939a3e449}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{2c29c3cb-703d-0371-349f-f065000aac0e}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO ETcVnColorSpaceTransform;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{a27da760-e716-02a8-1935-cfe2abeecee7}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnColorSpaceTransform]]></Declaration>
+      <Get Name="Get" Id="{d7891f2e-19c2-0c99-3cb6-de71ebfef045}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f0bd805c-6ca3-0b3f-0b78-cd19eb36ff4c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="_ETcVn2dCodeSearchStrategy_TestSuite" Id="{621b2019-b211-413e-ad2e-13ad4681a718}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVn2dCodeSearchStrategy_TestSuite EXTENDS TcUnit.FB_TestSuite
+  <POU Name="_ETcVnBarcodeType_TestSuite" Id="{5183a18b-aa80-00bd-0ac6-9cc6c34803a8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVnBarcodeType_TestSuite EXTENDS TcUnit.FB_TestSuite
 VAR
 END_VAR
 ]]></Declaration>
@@ -23,10 +23,10 @@ TestTryMakeReferenceToFollowsReference();
 TestTryMakeReferenceToUpdatesReference();
 ]]></ST>
     </Implementation>
-    <Method Name="TestAddress" Id="{e3f9ac47-047b-4b7e-a25a-19f9b4b88475}">
+    <Method Name="TestAddress" Id="{b8c75d68-254d-0fdf-14aa-a83b3829639e}">
       <Declaration><![CDATA[METHOD PUBLIC TestAddress
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
     notExpected : PVOID := 0;
     actual : PVOID;
 END_VAR
@@ -45,13 +45,13 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClearReference" Id="{ca989826-8d0a-4e00-9abf-f7238f70332f}">
+    <Method Name="TestClearReference" Id="{273c6891-a903-0e32-2edd-049e2890aa16}">
       <Declaration><![CDATA[METHOD PUBLIC TestClearReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+	target : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -59,7 +59,7 @@ END_VAR
 
 _type.MakeReferenceTo(target);
 _type.ClearReference();
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := _type.Value;
 
@@ -73,10 +73,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClone" Id="{f1543845-2175-4fbd-99bc-40748e2daac4}">
+    <Method Name="TestClone" Id="{e76de411-353f-0268-01fc-409820d8d681}">
       <Declaration><![CDATA[METHOD PUBLIC TestClone
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
 	clone : I_Datatype;
 	isValidClone : BOOL;
 	compareResult : DINT;
@@ -110,11 +110,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestIdentifierReturnsExpected" Id="{a7c3c186-976f-4ee5-9e60-e53ee477936d}">
+    <Method Name="TestIdentifierReturnsExpected" Id="{348100a0-0c4e-0424-0497-5d77be1caa63}">
       <Declaration><![CDATA[METHOD PUBLIC TestIdentifierReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : STRING := 'ETcVn2dCodeSearchStrategy';
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : STRING := 'ETcVnBarcodeType';
     actual : STRING;
 END_VAR
 ]]></Declaration>
@@ -133,20 +133,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToFollowsReference" Id="{007c1218-8324-4ebd-8a60-7ed3ad12d1d2}">
+    <Method Name="TestMakeReferenceToFollowsReference" Id="{f1e2d984-126c-0bd7-124b-8def4cb6e2e7}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+	target : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODE39;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToFollowsReference');
 
 _type.MakeReferenceTo(target);
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := _type.Value;
 
@@ -160,20 +160,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToUpdatesReference" Id="{cde48aca-1473-49bb-b9d6-ddfb5b9a7e01}">
+    <Method Name="TestMakeReferenceToUpdatesReference" Id="{584f637a-7f68-059e-3c9e-63654ff7d38d}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+	target : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODE39;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToUpdatesReference');
 
 _type.MakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := target;
 
@@ -187,12 +187,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeTypeWith" Id="{6b7c0159-5294-4205-aacf-3017d1ab10dd}">
+    <Method Name="TestSerializeTypeWith" Id="{62c26757-da33-0033-3abc-8c10b3e54f69}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeTypeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
     serializer : JsonSerializer;
-    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVn2dCodeSearchStrategy","enumerations":["TCVN_CSS_DEFAULT","TCVN_CSS_FIRST_FLIPPED","TCVN_CSS_FIRST_INVERTED","TCVN_CSS_FIRST_NOT_FLIPPED","TCVN_CSS_FIRST_NOT_INVERTED","TCVN_CSS_ONLY_FLIPPED","TCVN_CSS_ONLY_INVERTED","TCVN_CSS_ONLY_NOT_FLIPPED","TCVN_CSS_ONLY_NOT_INVERTED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}';
+    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVnBarcodeType","enumerations":["TCVN_BT_CODABAR","TCVN_BT_CODE39","TCVN_BT_CODE93","TCVN_BT_CODE128","TCVN_BT_EAN8","TCVN_BT_EAN13","TCVN_BT_EAN13","TCVN_BT_UPCA","TCVN_BT_UPCE","TCVN_BT_ANY","TCVN_BT_CODE39EXTENDED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}'; 
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -213,12 +213,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeWith" Id="{0208361f-9c7f-4f5f-98a8-33c6c49771c2}">
+    <Method Name="TestSerializeWith" Id="{6363da0c-1e8d-0710-3338-32a09bc4782d}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
     serializer : JsonSerializer;
-    expected : STRING := '"TCVN_CSS_DEFAULT"';
+    expected : STRING := '"TCVN_BT_CODABAR"';
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -239,11 +239,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSize" Id="{67e7b181-17db-49e9-b166-a0fb61d074cb}">
+    <Method Name="TestSize" Id="{9c0530b4-d953-0279-39b3-fa99763e922c}">
       <Declaration><![CDATA[METHOD PUBLIC TestSize
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : UDINT := SIZEOF(ETcVn2dCodeSearchStrategy);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : UDINT := SIZEOF(ETcVnBarcodeType);
     actual : UDINT;
 END_VAR
 ]]></Declaration>
@@ -262,15 +262,15 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryDeserializeFrom" Id="{e675d091-ebc0-4b62-9223-421f167f8a5a}">
+    <Method Name="TestTryDeserializeFrom" Id="{ea0052e0-9b85-04d8-1719-febf3b097b14}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryDeserializeFrom
 VAR
     deserializer : JsonDeserializer;
     feedback : DeserializerFeedback;
-    json : STRING := '"TCVN_CSS_DEFAULT"';
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    json : STRING := '"TCVN_BT_CODABAR"';
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    actual : ETcVnBarcodeType;
  END_VAR
 ]]></Declaration>
       <Implementation>
@@ -292,20 +292,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{e9305dbe-4c77-41f0-980c-f6fd786a17b4}">
+    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{ca824b26-3475-0034-1ba2-bf3010698569}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+	target : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODE39;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToFollowsReference');
 
 _type.TryMakeReferenceTo(target);
-target.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target.Value := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := _type.Value;
 
@@ -319,20 +319,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{21d0bf7a-2977-4ac2-8a65-53d037dbac94}">
+    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{e101c1ef-e953-0a7e-119d-72696a2a5750}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+	target : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODE39;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToUpdatesReference');
 
 _type.TryMakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := target.Value;
 
@@ -346,10 +346,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTypeNameReturnsExpected" Id="{3418219a-a024-43d6-85fb-7b6ca2bdaed9}">
+    <Method Name="TestTypeNameReturnsExpected" Id="{e0f49207-f61f-06b1-0c5d-5a2706aabc52}">
       <Declaration><![CDATA[METHOD PUBLIC TestTypeNameReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
     expected : STRING := 'ENUM';
     actual : STRING;
 END_VAR
@@ -369,18 +369,18 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterChange" Id="{5d66275b-a768-4751-85c6-02a70a99a3e4}">
+    <Method Name="TestValueReturnsExpectedAfterChange" Id="{dd4194f6-3447-0598-2a67-36b29f8becb1}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterChange
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODE39;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestValueReturnsExpectedAfterChange');
 
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBarcodeType.TCVN_BT_CODE39;
 
 actual := _type.Value;
 
@@ -394,12 +394,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterInit" Id="{444ae037-1215-453a-9928-b48a8361a30b}">
+    <Method Name="TestValueReturnsExpectedAfterInit" Id="{520b2fd1-025e-0cf6-36a3-f66ae0b8eb12}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterInit
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
+    expected : ETcVnBarcodeType := ETcVnBarcodeType.TCVN_BT_CODABAR;
+    actual : ETcVnBarcodeType;
 END_VAR
 ]]></Declaration>
       <Implementation>

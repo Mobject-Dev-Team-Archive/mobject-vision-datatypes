@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="_ETcVn2dCodeSearchStrategy_TestSuite" Id="{621b2019-b211-413e-ad2e-13ad4681a718}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVn2dCodeSearchStrategy_TestSuite EXTENDS TcUnit.FB_TestSuite
+  <POU Name="_ETcVnBlobCombination_TestSuite" Id="{643d61d1-ad26-0df9-2d62-f145356bf4b8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVnBlobCombination_TestSuite EXTENDS TcUnit.FB_TestSuite
 VAR
 END_VAR
 ]]></Declaration>
@@ -23,10 +23,10 @@ TestTryMakeReferenceToFollowsReference();
 TestTryMakeReferenceToUpdatesReference();
 ]]></ST>
     </Implementation>
-    <Method Name="TestAddress" Id="{e3f9ac47-047b-4b7e-a25a-19f9b4b88475}">
+    <Method Name="TestAddress" Id="{772c8f8f-3479-0060-0fd2-487c46470f2e}">
       <Declaration><![CDATA[METHOD PUBLIC TestAddress
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
     notExpected : PVOID := 0;
     actual : PVOID;
 END_VAR
@@ -45,13 +45,13 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClearReference" Id="{ca989826-8d0a-4e00-9abf-f7238f70332f}">
+    <Method Name="TestClearReference" Id="{f98a377c-fe88-0873-2a4e-4222f19c580b}">
       <Declaration><![CDATA[METHOD PUBLIC TestClearReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+	target : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -59,7 +59,7 @@ END_VAR
 
 _type.MakeReferenceTo(target);
 _type.ClearReference();
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := _type.Value;
 
@@ -73,10 +73,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClone" Id="{f1543845-2175-4fbd-99bc-40748e2daac4}">
+    <Method Name="TestClone" Id="{45d8f60a-5fe7-07ea-23cf-e217f1e7ecab}">
       <Declaration><![CDATA[METHOD PUBLIC TestClone
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
 	clone : I_Datatype;
 	isValidClone : BOOL;
 	compareResult : DINT;
@@ -110,11 +110,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestIdentifierReturnsExpected" Id="{a7c3c186-976f-4ee5-9e60-e53ee477936d}">
+    <Method Name="TestIdentifierReturnsExpected" Id="{37dfcf7f-e677-0fb0-3a99-3b9f55364738}">
       <Declaration><![CDATA[METHOD PUBLIC TestIdentifierReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : STRING := 'ETcVn2dCodeSearchStrategy';
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : STRING := 'ETcVnBlobCombination';
     actual : STRING;
 END_VAR
 ]]></Declaration>
@@ -133,20 +133,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToFollowsReference" Id="{007c1218-8324-4ebd-8a60-7ed3ad12d1d2}">
+    <Method Name="TestMakeReferenceToFollowsReference" Id="{7d7e7d0f-07c8-0e2a-22e6-356b36fb6cfe}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+	target : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_LARGEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToFollowsReference');
 
 _type.MakeReferenceTo(target);
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := _type.Value;
 
@@ -160,20 +160,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToUpdatesReference" Id="{cde48aca-1473-49bb-b9d6-ddfb5b9a7e01}">
+    <Method Name="TestMakeReferenceToUpdatesReference" Id="{290eb901-f7c5-0e86-3ef5-44b5d43d82c6}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+	target : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_LARGEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToUpdatesReference');
 
 _type.MakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := target;
 
@@ -187,12 +187,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeTypeWith" Id="{6b7c0159-5294-4205-aacf-3017d1ab10dd}">
+    <Method Name="TestSerializeTypeWith" Id="{428dd906-7041-0b44-2143-84b984aa782c}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeTypeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
     serializer : JsonSerializer;
-    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVn2dCodeSearchStrategy","enumerations":["TCVN_CSS_DEFAULT","TCVN_CSS_FIRST_FLIPPED","TCVN_CSS_FIRST_INVERTED","TCVN_CSS_FIRST_NOT_FLIPPED","TCVN_CSS_FIRST_NOT_INVERTED","TCVN_CSS_ONLY_FLIPPED","TCVN_CSS_ONLY_INVERTED","TCVN_CSS_ONLY_NOT_FLIPPED","TCVN_CSS_ONLY_NOT_INVERTED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}';
+    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVnBlobCombination","enumerations":["TCVN_BC_SMALLEST","TCVN_BC_LARGEST","TCVN_BC_MIN_THRESHOLD","TCVN_BC_MAX_THRESHOLD","TCVN_BC_MEDIAN_THRESHOLD"],"baseType":{"typeName":"DINT","minValue":-2147483648,"maxValue":2147483647,"isSigned":true,"isFloat":false}}';
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -213,12 +213,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeWith" Id="{0208361f-9c7f-4f5f-98a8-33c6c49771c2}">
+    <Method Name="TestSerializeWith" Id="{9c0eccff-c772-0d1e-2464-94585b3e8f85}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
     serializer : JsonSerializer;
-    expected : STRING := '"TCVN_CSS_DEFAULT"';
+    expected : STRING := '"TCVN_BC_SMALLEST"';
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -239,11 +239,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSize" Id="{67e7b181-17db-49e9-b166-a0fb61d074cb}">
+    <Method Name="TestSize" Id="{a106d3c5-0d8d-0fc0-3961-6086bcf868b7}">
       <Declaration><![CDATA[METHOD PUBLIC TestSize
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : UDINT := SIZEOF(ETcVn2dCodeSearchStrategy);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : UDINT := SIZEOF(ETcVnBlobCombination);
     actual : UDINT;
 END_VAR
 ]]></Declaration>
@@ -262,15 +262,15 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryDeserializeFrom" Id="{e675d091-ebc0-4b62-9223-421f167f8a5a}">
+    <Method Name="TestTryDeserializeFrom" Id="{951a5151-ed4f-00e0-350b-cf07237a11dc}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryDeserializeFrom
 VAR
     deserializer : JsonDeserializer;
     feedback : DeserializerFeedback;
-    json : STRING := '"TCVN_CSS_DEFAULT"';
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    json : STRING := '"TCVN_BC_SMALLEST"';
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    actual : ETcVnBlobCombination;
  END_VAR
 ]]></Declaration>
       <Implementation>
@@ -292,20 +292,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{e9305dbe-4c77-41f0-980c-f6fd786a17b4}">
+    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{f83ba383-b38e-0c31-3438-c68578e261a1}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+	target : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_LARGEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToFollowsReference');
 
 _type.TryMakeReferenceTo(target);
-target.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target.Value := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := _type.Value;
 
@@ -319,20 +319,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{21d0bf7a-2977-4ac2-8a65-53d037dbac94}">
+    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{6374d5cd-8422-07b0-39b9-a82be7742846}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+	target : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_LARGEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToUpdatesReference');
 
 _type.TryMakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := target.Value;
 
@@ -346,10 +346,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTypeNameReturnsExpected" Id="{3418219a-a024-43d6-85fb-7b6ca2bdaed9}">
+    <Method Name="TestTypeNameReturnsExpected" Id="{43c5ba03-0125-0ded-0175-d08ff3c41e17}">
       <Declaration><![CDATA[METHOD PUBLIC TestTypeNameReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
     expected : STRING := 'ENUM';
     actual : STRING;
 END_VAR
@@ -369,18 +369,18 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterChange" Id="{5d66275b-a768-4751-85c6-02a70a99a3e4}">
+    <Method Name="TestValueReturnsExpectedAfterChange" Id="{d1a1aa89-085d-077b-19e2-aea000b5467b}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterChange
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_LARGEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestValueReturnsExpectedAfterChange');
 
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnBlobCombination.TCVN_BC_LARGEST;
 
 actual := _type.Value;
 
@@ -394,12 +394,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterInit" Id="{444ae037-1215-453a-9928-b48a8361a30b}">
+    <Method Name="TestValueReturnsExpectedAfterInit" Id="{b465ceea-209a-0c7b-39de-d77232ddc53f}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterInit
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnBlobCombination(ETcVnBlobCombination.TCVN_BC_SMALLEST);
+    expected : ETcVnBlobCombination := ETcVnBlobCombination.TCVN_BC_SMALLEST;
+    actual : ETcVnBlobCombination;
 END_VAR
 ]]></Declaration>
       <Implementation>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="_ETcVn2dCodeSearchStrategy_TestSuite" Id="{621b2019-b211-413e-ad2e-13ad4681a718}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVn2dCodeSearchStrategy_TestSuite EXTENDS TcUnit.FB_TestSuite
+  <POU Name="_ETcVnAdaptiveThresholdMethod_TestSuite" Id="{e0886a07-b8d8-0448-3d78-46831128d6fd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK _ETcVnAdaptiveThresholdMethod_TestSuite EXTENDS TcUnit.FB_TestSuite
 VAR
 END_VAR
 ]]></Declaration>
@@ -23,10 +23,10 @@ TestTryMakeReferenceToFollowsReference();
 TestTryMakeReferenceToUpdatesReference();
 ]]></ST>
     </Implementation>
-    <Method Name="TestAddress" Id="{e3f9ac47-047b-4b7e-a25a-19f9b4b88475}">
+    <Method Name="TestAddress" Id="{ffdfa659-000c-0461-399b-6f644f8ad601}">
       <Declaration><![CDATA[METHOD PUBLIC TestAddress
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
     notExpected : PVOID := 0;
     actual : PVOID;
 END_VAR
@@ -45,13 +45,13 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClearReference" Id="{ca989826-8d0a-4e00-9abf-f7238f70332f}">
+    <Method Name="TestClearReference" Id="{f929ff5f-3d70-0eca-2655-759d781a4926}">
       <Declaration><![CDATA[METHOD PUBLIC TestClearReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+	target : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -59,7 +59,7 @@ END_VAR
 
 _type.MakeReferenceTo(target);
 _type.ClearReference();
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := _type.Value;
 
@@ -73,10 +73,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestClone" Id="{f1543845-2175-4fbd-99bc-40748e2daac4}">
+    <Method Name="TestClone" Id="{ece90365-083d-0f4a-13ec-b15c51ab304a}">
       <Declaration><![CDATA[METHOD PUBLIC TestClone
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
 	clone : I_Datatype;
 	isValidClone : BOOL;
 	compareResult : DINT;
@@ -110,11 +110,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestIdentifierReturnsExpected" Id="{a7c3c186-976f-4ee5-9e60-e53ee477936d}">
+    <Method Name="TestIdentifierReturnsExpected" Id="{4a859c13-dda8-0908-128b-f9083270e49a}">
       <Declaration><![CDATA[METHOD PUBLIC TestIdentifierReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : STRING := 'ETcVn2dCodeSearchStrategy';
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : STRING := 'ETcVnAdaptiveThresholdMethod';
     actual : STRING;
 END_VAR
 ]]></Declaration>
@@ -133,20 +133,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToFollowsReference" Id="{007c1218-8324-4ebd-8a60-7ed3ad12d1d2}">
+    <Method Name="TestMakeReferenceToFollowsReference" Id="{3a4093f8-c464-0004-0ceb-4352a59bae29}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+	target : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToFollowsReference');
 
 _type.MakeReferenceTo(target);
-target := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := _type.Value;
 
@@ -160,20 +160,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestMakeReferenceToUpdatesReference" Id="{cde48aca-1473-49bb-b9d6-ddfb5b9a7e01}">
+    <Method Name="TestMakeReferenceToUpdatesReference" Id="{40e4ff1d-a07d-060a-12d1-b646a521718d}">
       <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+	target : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestMakeReferenceToUpdatesReference');
 
 _type.MakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := target;
 
@@ -187,12 +187,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeTypeWith" Id="{6b7c0159-5294-4205-aacf-3017d1ab10dd}">
+    <Method Name="TestSerializeTypeWith" Id="{676552d0-402c-0f8d-2a21-3de055f0e6ab}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeTypeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
     serializer : JsonSerializer;
-    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVn2dCodeSearchStrategy","enumerations":["TCVN_CSS_DEFAULT","TCVN_CSS_FIRST_FLIPPED","TCVN_CSS_FIRST_INVERTED","TCVN_CSS_FIRST_NOT_FLIPPED","TCVN_CSS_FIRST_NOT_INVERTED","TCVN_CSS_ONLY_FLIPPED","TCVN_CSS_ONLY_INVERTED","TCVN_CSS_ONLY_NOT_FLIPPED","TCVN_CSS_ONLY_NOT_INVERTED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}';
+    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVnAdaptiveThresholdMethod","enumerations":["TCVN_ATM_MEAN","TCVN_ATM_GAUSSIAN"],"baseType":{"typeName":"DINT","minValue":-2147483648,"maxValue":2147483647,"isSigned":true,"isFloat":false}}'; 
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -213,12 +213,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSerializeWith" Id="{0208361f-9c7f-4f5f-98a8-33c6c49771c2}">
+    <Method Name="TestSerializeWith" Id="{1ae42b9d-7f8f-02a9-0af3-33b468e1cdbc}">
       <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
     serializer : JsonSerializer;
-    expected : STRING := '"TCVN_CSS_DEFAULT"';
+    expected : STRING := '"TCVN_ATM_MEAN"';
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
@@ -239,11 +239,11 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestSize" Id="{67e7b181-17db-49e9-b166-a0fb61d074cb}">
+    <Method Name="TestSize" Id="{9a12eac7-5893-0c1e-13e2-31730cbc719d}">
       <Declaration><![CDATA[METHOD PUBLIC TestSize
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : UDINT := SIZEOF(ETcVn2dCodeSearchStrategy);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : UDINT := SIZEOF(ETcVnAdaptiveThresholdMethod);
     actual : UDINT;
 END_VAR
 ]]></Declaration>
@@ -262,15 +262,15 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryDeserializeFrom" Id="{e675d091-ebc0-4b62-9223-421f167f8a5a}">
+    <Method Name="TestTryDeserializeFrom" Id="{32285721-271f-0c81-2648-5e4a25620ed5}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryDeserializeFrom
 VAR
     deserializer : JsonDeserializer;
     feedback : DeserializerFeedback;
-    json : STRING := '"TCVN_CSS_DEFAULT"';
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    json : STRING := '"TCVN_ATM_MEAN"';
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    actual : ETcVnAdaptiveThresholdMethod;
  END_VAR
 ]]></Declaration>
       <Implementation>
@@ -292,20 +292,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{e9305dbe-4c77-41f0-980c-f6fd786a17b4}">
+    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{b0bacefb-6123-0e2b-11d8-a7e195badc3c}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToFollowsReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+	target : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToFollowsReference');
 
 _type.TryMakeReferenceTo(target);
-target.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+target.Value := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := _type.Value;
 
@@ -319,20 +319,20 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{21d0bf7a-2977-4ac2-8a65-53d037dbac94}">
+    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{58e56aab-6ed9-0005-2373-9db915322918}">
       <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToUpdatesReference
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-	target : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+	target : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestTryMakeReferenceToUpdatesReference');
 
 _type.TryMakeReferenceTo(target);
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := target.Value;
 
@@ -346,10 +346,10 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestTypeNameReturnsExpected" Id="{3418219a-a024-43d6-85fb-7b6ca2bdaed9}">
+    <Method Name="TestTypeNameReturnsExpected" Id="{e75a0e4c-a962-06de-1f45-db16f1b0f88b}">
       <Declaration><![CDATA[METHOD PUBLIC TestTypeNameReturnsExpected
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
     expected : STRING := 'ENUM';
     actual : STRING;
 END_VAR
@@ -369,18 +369,18 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterChange" Id="{5d66275b-a768-4751-85c6-02a70a99a3e4}">
+    <Method Name="TestValueReturnsExpectedAfterChange" Id="{def16868-a18b-0a9a-1ac0-55ee8912c2e5}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterChange
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestValueReturnsExpectedAfterChange');
 
-_type.Value := ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED;
+_type.Value := ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN;
 
 actual := _type.Value;
 
@@ -394,12 +394,12 @@ TEST_FINISHED();
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TestValueReturnsExpectedAfterInit" Id="{444ae037-1215-453a-9928-b48a8361a30b}">
+    <Method Name="TestValueReturnsExpectedAfterInit" Id="{c299f889-9aaf-07c1-3060-7a7a40c883c3}">
       <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterInit
 VAR
-    _type : _ETcVn2dCodeSearchStrategy(ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-    expected : ETcVn2dCodeSearchStrategy := ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT;
-    actual : ETcVn2dCodeSearchStrategy;
+    _type : _ETcVnAdaptiveThresholdMethod(ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+    expected : ETcVnAdaptiveThresholdMethod := ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN;
+    actual : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>

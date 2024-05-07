@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="_ETcVn2dCodeSearchStrategy" Id="{e0e215ea-a5ad-01c6-03ac-9f2472ff8d3b}" SpecialFunc="None">
+  <POU Name="_ETcVnAdaptiveThresholdMethod" Id="{26a3241b-78b8-02fb-127a-34cd31b93f52}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 {attribute 'enable_dynamic_creation'}
-FUNCTION_BLOCK _ETcVn2dCodeSearchStrategy EXTENDS EnumDatatypeBase
+FUNCTION_BLOCK _ETcVnAdaptiveThresholdMethod EXTENDS EnumDatatypeBase
 VAR
-	localData : ETcVn2dCodeSearchStrategy;
-	activeData : REFERENCE TO ETcVn2dCodeSearchStrategy;
-	enumBaseDatatype : _UDINT(localData);
+	localData : ETcVnAdaptiveThresholdMethod;
+	activeData : REFERENCE TO ETcVnAdaptiveThresholdMethod;
+	enumBaseDatatype : _DINT(localData);
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Folder Name="Constructor" Id="{c9c4070a-346e-0dc0-25e6-d59228b9c0a7}" />
-    <Folder Name="Private" Id="{4d457c09-a1d1-0fff-2972-dd30bac06cb5}" />
-    <Folder Name="Protected" Id="{abf9ef55-0ec3-08bf-381b-ce5b8b3594ad}" />
-    <Method Name="AddLocalEnumeration" Id="{e9ecc663-5286-0d89-3b8a-1436b0698c71}" FolderPath="Private\">
+    <Folder Name="Constructor" Id="{c1f7c7ee-1cd0-0062-0d38-995e27dd0240}" />
+    <Folder Name="Private" Id="{d7cf7516-76db-09db-0558-887c95dcf8b5}" />
+    <Folder Name="Protected" Id="{b6d8bef6-5508-007f-1870-d4045cb53871}" />
+    <Method Name="AddLocalEnumeration" Id="{87a0d2e2-7d81-093c-19cc-ad6e23d940f2}" FolderPath="Private\">
       <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
 VAR_INPUT
 	Enumeration : T_MAXSTRING;
-	Value : ETcVn2dCodeSearchStrategy;
+	Value : ETcVnAdaptiveThresholdMethod;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Address" Id="{67263ac1-d7dc-0c95-19e0-25952b98816f}">
+    <Property Name="Address" Id="{c6336590-9e3e-02d5-22c5-90e4e73b79ba}">
       <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
-      <Get Name="Get" Id="{dd616415-c581-0b30-1fa9-4da067cd0d73}">
+      <Get Name="Get" Id="{48342524-9c19-0ef3-3379-204e26665ddb}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -38,7 +38,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="ClearReference" Id="{c0174beb-6d3f-0ddf-352b-a3d3d71efcb5}">
+    <Method Name="ClearReference" Id="{20da2f1a-840d-0cef-3ef1-ea9161bc08d8}">
       <Declaration><![CDATA[METHOD PUBLIC ClearReference
 VAR_INPUT
 END_VAR
@@ -48,23 +48,23 @@ END_VAR
 SetBaseDatatypeReference();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Clone" Id="{ccd7da31-63ca-0d2f-10bc-7108342ef334}">
+    <Method Name="Clone" Id="{950cce9b-c0f0-01a2-1d7d-b16c0f4da112}">
       <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
 VAR
-    pClone : POINTER TO _ETcVn2dCodeSearchStrategy;
+    pClone : POINTER TO _ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[pClone := __NEW(_ETcVn2dCodeSearchStrategy(InitialValue := Value));
+        <ST><![CDATA[pClone := __NEW(_ETcVnAdaptiveThresholdMethod(InitialValue := Value));
 Clone := pClone^;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{35fa3f5a-1a6e-0932-15da-a7f04006b5ba}" FolderPath="Constructor\">
+    <Method Name="FB_init" Id="{ef58a7c0-dc3b-0802-301a-0bcd1c6453c2}" FolderPath="Constructor\">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
-	InitialValue : ETcVn2dCodeSearchStrategy;
+	InitialValue : ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -72,35 +72,29 @@ END_VAR
 AddBaseDatatype(enumBaseDatatype);
 ClearReference();
 
-AddLocalEnumeration('TCVN_CSS_DEFAULT', ETcVn2dCodeSearchStrategy.TCVN_CSS_DEFAULT);
-AddLocalEnumeration('TCVN_CSS_FIRST_FLIPPED', ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_FLIPPED);
-AddLocalEnumeration('TCVN_CSS_FIRST_INVERTED', ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_INVERTED);
-AddLocalEnumeration('TCVN_CSS_FIRST_NOT_FLIPPED', ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_NOT_FLIPPED);
-AddLocalEnumeration('TCVN_CSS_FIRST_NOT_INVERTED', ETcVn2dCodeSearchStrategy.TCVN_CSS_FIRST_NOT_INVERTED);
-AddLocalEnumeration('TCVN_CSS_ONLY_FLIPPED', ETcVn2dCodeSearchStrategy.TCVN_CSS_ONLY_FLIPPED);
-AddLocalEnumeration('TCVN_CSS_ONLY_INVERTED', ETcVn2dCodeSearchStrategy.TCVN_CSS_ONLY_INVERTED);
-AddLocalEnumeration('TCVN_CSS_ONLY_NOT_FLIPPED', ETcVn2dCodeSearchStrategy.TCVN_CSS_ONLY_NOT_FLIPPED);
-AddLocalEnumeration('TCVN_CSS_ONLY_NOT_INVERTED', ETcVn2dCodeSearchStrategy.TCVN_CSS_ONLY_NOT_INVERTED);]]></ST>
+AddLocalEnumeration('TCVN_ATM_MEAN', ETcVnAdaptiveThresholdMethod.TCVN_ATM_MEAN);
+AddLocalEnumeration('TCVN_ATM_GAUSSIAN', ETcVnAdaptiveThresholdMethod.TCVN_ATM_GAUSSIAN);
+]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Identifier" Id="{e841c6fe-17a0-0cf8-233c-c9743f4d604f}">
+    <Property Name="Identifier" Id="{e261b1e0-5408-0619-0a9b-da6a7e993265}">
       <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
-      <Get Name="Get" Id="{edff7982-d2b2-06db-37f9-362e12c42a7e}">
+      <Get Name="Get" Id="{4690aae6-c85f-0b58-00bc-281fccf4af28}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
         <Implementation>
-          <ST><![CDATA[Identifier := 'ETcVn2dCodeSearchStrategy';]]></ST>
+          <ST><![CDATA[Identifier := 'ETcVnAdaptiveThresholdMethod';]]></ST>
         </Implementation>
       </Get>
     </Property>
-    <Method Name="IsEnumeratorValueEqual" Id="{d162d2c2-f74a-0e44-007d-1d63ccfee747}" FolderPath="Protected\">
+    <Method Name="IsEnumeratorValueEqual" Id="{eafc55bd-b709-0689-03a9-4d6575259f9d}" FolderPath="Protected\">
       <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
 VAR_INPUT
 	Enumerator : I_KeyValueForwardEnumerator;
 END_VAR
 VAR
-	storedValue : ETcVn2dCodeSearchStrategy;
+	storedValue : ETcVnAdaptiveThresholdMethod;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
@@ -110,10 +104,10 @@ END_IF
 IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="MakeReferenceTo" Id="{df6c5334-288d-03c6-3ed2-86b559b62b60}">
+    <Method Name="MakeReferenceTo" Id="{8f309036-fbdf-0162-325f-a8d1c0edd9c3}">
       <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
 VAR_INPUT
-	ReferenceTarget : REFERENCE TO ETcVn2dCodeSearchStrategy;
+	ReferenceTarget : REFERENCE TO ETcVnAdaptiveThresholdMethod;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -121,7 +115,7 @@ END_VAR
 SetBaseDatatypeReference();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetBaseDatatypeReference" Id="{a809f012-9d32-0254-0a0d-0962379f43f9}" FolderPath="Protected\">
+    <Method Name="SetBaseDatatypeReference" Id="{76344340-d5b9-09f6-0c2e-bb98b5a474f5}" FolderPath="Protected\">
       <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
 VAR_INPUT
 END_VAR
@@ -130,9 +124,9 @@ END_VAR
         <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Size" Id="{ecf16775-c8bb-0c13-0e22-f3bc0f327241}">
+    <Property Name="Size" Id="{621d2e0c-d20e-059b-0d89-e95ba9247fa0}">
       <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
-      <Get Name="Get" Id="{299fd4a4-2731-0583-010f-6224c2cbf7fb}">
+      <Get Name="Get" Id="{58079bac-7cca-0ecf-0f70-cc349d3ea793}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -141,14 +135,14 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="TryMakeReferenceTo" Id="{755c63ee-dd1d-085c-0870-d6659cc03a7d}">
+    <Method Name="TryMakeReferenceTo" Id="{69a76e1c-1af8-00b2-2032-2c34c2e227e9}">
       <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
 VAR_INPUT
 	Target : I_Datatype;
 END_VAR
 VAR
 	targetAsEnum : I_EnumDatatype;
-	pTargetData : POINTER TO ETcVn2dCodeSearchStrategy;
+	pTargetData : POINTER TO ETcVnAdaptiveThresholdMethod;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
@@ -165,9 +159,9 @@ SetBaseDatatypeReference();
 TryMakeReferenceTo := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Value" Id="{05e73928-4fb6-0854-2738-cd0876f668d2}">
-      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVn2dCodeSearchStrategy]]></Declaration>
-      <Get Name="Get" Id="{edefefae-a3ed-0b78-3ddc-9f1fca64c0ae}">
+    <Property Name="Value" Id="{3ccf15d2-b3b1-05f0-275c-7e6c44b41f81}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnAdaptiveThresholdMethod]]></Declaration>
+      <Get Name="Get" Id="{bbce4832-dd75-0ca4-00e3-8deb6882c580}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -175,7 +169,7 @@ END_VAR
           <ST><![CDATA[Value := activeData;]]></ST>
         </Implementation>
       </Get>
-      <Set Name="Set" Id="{07011cfe-01c8-0e3d-09a2-d5f847e155a7}">
+      <Set Name="Set" Id="{ed7a38f1-0a73-047d-1fae-0c2e83904170}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
