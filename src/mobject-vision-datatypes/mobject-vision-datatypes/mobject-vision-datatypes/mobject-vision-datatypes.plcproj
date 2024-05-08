@@ -76,7 +76,16 @@
     <Compile Include="Enums\_ETcVn2dCodeSearchStrategy.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\_ETcVnPixelEncoding.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnColorMapSize.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Enums\_ETcVnAdaptiveThresholdMethod.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnCalibrationPattern.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Enums\_ETcVnBarcodeSearchDirection.TcPOU">
@@ -91,7 +100,22 @@
     <Compile Include="Enums\_ETcVnBorderInterpolationMethod.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Enums\_ETcVnCalibrationPatternOrigin.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnCameraState.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnClusteringAlgorithm.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnColorMap.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Enums\_ETcVnColorSpaceTransform.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enums\_ETcVnPixelPackMode.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VisionDatatypePack.TcPOU">

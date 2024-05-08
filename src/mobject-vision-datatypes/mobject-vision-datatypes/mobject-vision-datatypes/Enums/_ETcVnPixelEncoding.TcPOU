@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_ETcVnPixelEncoding" Id="{d78febb1-5565-0c71-12ef-a655a15d5afc}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _ETcVnPixelEncoding EXTENDS EnumDatatypeBase
+VAR
+	localData : ETcVnPixelEncoding;
+	activeData : REFERENCE TO ETcVnPixelEncoding;
+	enumBaseDatatype : _BYTE(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{73ebd601-ec87-0d36-11ab-5dc2d3a82cbf}" />
+    <Folder Name="Private" Id="{53223139-ff07-0571-3645-635123f5920c}" />
+    <Folder Name="Protected" Id="{6b37a5f5-b905-01b3-3efa-797c8111fd70}" />
+    <Method Name="AddLocalEnumeration" Id="{483dfac1-89ed-0c52-1b12-213bd3d111a9}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : ETcVnPixelEncoding;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{b9b87ab7-7b9c-0456-3219-a77c17a13d9d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{b87b7d8d-b169-00c9-1002-e32a205ef338}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{bbaabe02-cd11-0cd5-3d4f-09bc3499c9b7}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{1213ee7f-e900-021b-300b-b3e836ce75d3}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _ETcVnPixelEncoding;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_ETcVnPixelEncoding(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{51c64731-d055-0a88-1cd0-76e936b427c6}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : ETcVnPixelEncoding;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('TCVN_PE_NONE', ETcVnPixelEncoding.TCVN_PE_NONE);
+AddLocalEnumeration('TCVN_PE_BAYER_GR', ETcVnPixelEncoding.TCVN_PE_BAYER_GR);
+AddLocalEnumeration('TCVN_PE_BAYER_RG', ETcVnPixelEncoding.TCVN_PE_BAYER_RG);
+AddLocalEnumeration('TCVN_PE_BAYER_GB', ETcVnPixelEncoding.TCVN_PE_BAYER_GB);
+AddLocalEnumeration('TCVN_PE_BAYER_BG', ETcVnPixelEncoding.TCVN_PE_BAYER_BG);
+AddLocalEnumeration('TCVN_PE_YUV_411_UYYVYY', ETcVnPixelEncoding.TCVN_PE_YUV_411_UYYVYY);
+AddLocalEnumeration('TCVN_PE_YUV_422_UYVY', ETcVnPixelEncoding.TCVN_PE_YUV_422_UYVY);
+AddLocalEnumeration('TCVN_PE_YUV_422_YUYV', ETcVnPixelEncoding.TCVN_PE_YUV_422_YUYV);
+AddLocalEnumeration('TCVN_PE_YCBCR_411_CBYYCRYY', ETcVnPixelEncoding.TCVN_PE_YCBCR_411_CBYYCRYY);
+AddLocalEnumeration('TCVN_PE_YCBCR_422_CBYCRY', ETcVnPixelEncoding.TCVN_PE_YCBCR_422_CBYCRY);
+AddLocalEnumeration('TCVN_PE_YCBCR_422_YCBYCR', ETcVnPixelEncoding.TCVN_PE_YCBCR_422_YCBYCR);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{7d88fa67-1015-0a3d-0510-4fdf59c7bd2f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{907b31c2-02fc-0317-263f-831bada19448}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'ETcVnPixelEncoding';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{8dfc0d5d-7c1b-07c6-2e98-81d82c86b1de}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : ETcVnPixelEncoding;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{5eac3248-b111-09b9-292b-768fb2c06536}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO ETcVnPixelEncoding;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{e6bc3529-e520-0a23-0483-6fb6e8fd947b}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{a98d47e5-05ce-0df0-1a05-1e0c7f9e7916}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{8d5f8fca-7644-0a40-02e7-682474f7d4f7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{0a6ad7ae-3a7d-0bf1-2c44-24b9aeefd48a}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO ETcVnPixelEncoding;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{6f49da13-21a2-09dc-3c6a-6497d4cd9022}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnPixelEncoding]]></Declaration>
+      <Get Name="Get" Id="{f288d16f-344f-0be4-2ffa-04045def2261}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{21ee4500-f0d4-0b8d-05bf-9686ddc57e1c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
