@@ -192,7 +192,7 @@ TEST_FINISHED();
 VAR
     _type : _ETcVnBarcodeType(ETcVnBarcodeType.TCVN_BT_CODABAR);
     serializer : JsonSerializer;
-    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVnBarcodeType","enumerations":["TCVN_BT_CODABAR","TCVN_BT_CODE39","TCVN_BT_CODE93","TCVN_BT_CODE128","TCVN_BT_EAN8","TCVN_BT_EAN13","TCVN_BT_EAN13","TCVN_BT_UPCA","TCVN_BT_UPCE","TCVN_BT_ANY","TCVN_BT_CODE39EXTENDED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}'; 
+    expected : STRING(500) := '{"typeName":"ENUM","identifier":"ETcVnBarcodeType","enumerations":["TCVN_BT_CODABAR","TCVN_BT_CODE39","TCVN_BT_CODE93","TCVN_BT_CODE128","TCVN_BT_EAN8","TCVN_BT_EAN13","TCVN_BT_ITF","TCVN_BT_UPCA","TCVN_BT_UPCE","TCVN_BT_ANY","TCVN_BT_CODE39EXTENDED"],"baseType":{"typeName":"UDINT","minValue":0,"maxValue":4294967295,"isSigned":false,"isFloat":false}}'; 
     actual : STRING(500);
 END_VAR
 ]]></Declaration>
