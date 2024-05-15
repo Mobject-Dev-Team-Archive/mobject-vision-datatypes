@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_ETcVnFontType" Id="{1c3867fa-0bcc-4a1d-9ca4-6ab09859c7a8}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _ETcVnFontType EXTENDS EnumDatatypeBase
+VAR
+	localData : ETcVnFontType;
+	activeData : REFERENCE TO ETcVnFontType;
+	enumBaseDatatype : _DINT(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{cf08bac0-dfe6-4969-a543-47083b401bbe}" />
+    <Folder Name="Private" Id="{e4e0b964-8346-4e68-abd8-95009e759af2}" />
+    <Folder Name="Protected" Id="{e6479d66-1097-416b-9c2d-be46df52413a}" />
+    <Method Name="AddLocalEnumeration" Id="{fc4f8e2d-95ba-45bf-aa9c-1c43bd1ca3ba}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : ETcVnFontType;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{f91ce926-1ccb-47da-aca1-af912face701}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{71b83e6c-623d-4b75-8028-5ccd9c7df6b0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{abc2777f-04ae-470d-89fe-0d9d0866a01a}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{58d68b04-d97d-479a-a1d4-0763fab17c73}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _ETcVnFontType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_ETcVnFontType(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{4968cedb-c4b6-4d36-a17d-62ef4b06e1de}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : ETcVnFontType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('TCVN_FT_HERSHEY_SIMPLEX', ETcVnFontType.TCVN_FT_HERSHEY_SIMPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_PLAIN', ETcVnFontType.TCVN_FT_HERSHEY_PLAIN);
+AddLocalEnumeration('TCVN_FT_HERSHEY_DUPLEX', ETcVnFontType.TCVN_FT_HERSHEY_DUPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_COMPLEX', ETcVnFontType.TCVN_FT_HERSHEY_COMPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_TRIPLEX', ETcVnFontType.TCVN_FT_HERSHEY_TRIPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_COMPLEX_SMALL', ETcVnFontType.TCVN_FT_HERSHEY_COMPLEX_SMALL);
+AddLocalEnumeration('TCVN_FT_HERSHEY_SCRIPT_SIMPLEX', ETcVnFontType.TCVN_FT_HERSHEY_SCRIPT_SIMPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_SCRIPT_COMPLEX', ETcVnFontType.TCVN_FT_HERSHEY_SCRIPT_COMPLEX);
+AddLocalEnumeration('TCVN_FT_HERSHEY_PLAIN_ITALIC', ETcVnFontType.TCVN_FT_HERSHEY_PLAIN_ITALIC);
+AddLocalEnumeration('TCVN_FT_HERSHEY_COMPLEX_ITALIC', ETcVnFontType.TCVN_FT_HERSHEY_COMPLEX_ITALIC);
+AddLocalEnumeration('TCVN_FT_HERSHEY_TRIPLEX_ITALIC', ETcVnFontType.TCVN_FT_HERSHEY_TRIPLEX_ITALIC);
+AddLocalEnumeration('TCVN_FT_HERSHEY_COMPLEX_SMALL_ITALIC', ETcVnFontType.TCVN_FT_HERSHEY_COMPLEX_SMALL_ITALIC);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{36369523-a4be-4b1f-9297-40c0ded219e6}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{43dfd3e5-2f2a-4e2b-bc40-d825db492047}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'ETcVnFontType';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{3fdf8eb9-27f5-40aa-acff-8739b86a1cf3}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : ETcVnFontType;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{3867d591-ddd2-4a8d-a66d-0e6591b04aed}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO ETcVnFontType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{cf2f633d-dbd1-4a13-89ba-929f98fd05ea}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{1eb16e87-80e7-46c9-813a-6e422bfd23fc}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{b7b6caa0-bb27-4038-b9bc-44c884a4b8f4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{b8e70aa3-262f-4118-848f-5059ce2dd874}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO ETcVnFontType;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{174d17e3-6475-4c8b-b465-163f2dbded44}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnFontType]]></Declaration>
+      <Get Name="Get" Id="{b2391dd0-1d20-4af5-9295-a312ff250cca}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{c90ad8ea-f2a7-420a-9108-7411ee159d01}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

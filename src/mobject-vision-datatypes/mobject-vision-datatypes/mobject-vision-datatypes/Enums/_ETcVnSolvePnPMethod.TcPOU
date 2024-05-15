@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_ETcVnSolvePnPMethod" Id="{28eb32e2-95af-4254-9d2c-067e53b19a58}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _ETcVnSolvePnPMethod EXTENDS EnumDatatypeBase
+VAR
+	localData : ETcVnSolvePnPMethod;
+	activeData : REFERENCE TO ETcVnSolvePnPMethod;
+	enumBaseDatatype : _DINT(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{5ae41708-445d-4bf4-bb3a-d498e0be0ba5}" />
+    <Folder Name="Private" Id="{b6733f60-1446-49db-93c1-9a83eeaa8cc3}" />
+    <Folder Name="Protected" Id="{12b1de25-1aea-4c52-aa46-b27c1ed282ac}" />
+    <Method Name="AddLocalEnumeration" Id="{ca8af53f-aaf0-40ac-96a0-dd52853c0899}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : ETcVnSolvePnPMethod;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{27415bb9-c27d-42af-812e-1d298462ffc2}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{0e6b0ed8-6e16-4f5d-93ff-dfa8bab6cbcc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{c38f5b3a-8f9b-48cf-b089-d53dea2c5e7a}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{8918196c-98fe-4712-aff8-4bef503aa6b7}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _ETcVnSolvePnPMethod;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_ETcVnSolvePnPMethod(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{a0b8beed-a4eb-45bc-8a5b-24f3edfda9ef}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : ETcVnSolvePnPMethod;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('TCVN_SPM_ITERATIVE', ETcVnSolvePnPMethod.TCVN_SPM_ITERATIVE);
+AddLocalEnumeration('TCVN_SPM_EPNP', ETcVnSolvePnPMethod.TCVN_SPM_EPNP);
+AddLocalEnumeration('TCVN_SPM_P3P', ETcVnSolvePnPMethod.TCVN_SPM_P3P);
+AddLocalEnumeration('TCVN_SPM_AP3P', ETcVnSolvePnPMethod.TCVN_SPM_AP3P);
+AddLocalEnumeration('TCVN_SPM_IPPE', ETcVnSolvePnPMethod.TCVN_SPM_IPPE);
+AddLocalEnumeration('TCVN_SPM_IPPE_SQUARE', ETcVnSolvePnPMethod.TCVN_SPM_IPPE_SQUARE);
+AddLocalEnumeration('TCVN_SPM_SQPNP', ETcVnSolvePnPMethod.TCVN_SPM_SQPNP);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{f137ddb3-0d90-4cf5-b093-ef44537e0a43}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{cf0c8592-583b-44ff-8292-0f3fcfd945cc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'ETcVnSolvePnPMethod';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{58e77140-6e90-4100-a003-95162346f93c}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : ETcVnSolvePnPMethod;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{f95007f4-ecd5-417b-898d-d72308353054}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO ETcVnSolvePnPMethod;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{4523b6db-cd4e-4197-a31f-49e46aeaefdd}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{80563433-a6be-4bba-bda7-287386ef92db}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{52c69104-f41a-48ab-9f2b-41f491c55eed}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{f1c24de5-5cb2-4f93-a7d4-cdb0d0ecd9af}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO ETcVnSolvePnPMethod;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{9e837f6c-a746-4dbc-a7a0-e0a308d3362f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnSolvePnPMethod]]></Declaration>
+      <Get Name="Get" Id="{999d5669-cd3c-4c25-98ed-af908eb2516d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4c47306a-dbb5-43d7-b12a-a435551b22ce}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

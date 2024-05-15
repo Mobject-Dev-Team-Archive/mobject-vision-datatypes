@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_ETcVnFeatureDescriptorTypeAKAZE" Id="{75016586-be8f-437f-b3d9-1ee8fd5b2945}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _ETcVnFeatureDescriptorTypeAKAZE EXTENDS EnumDatatypeBase
+VAR
+	localData : ETcVnFeatureDescriptorTypeAKAZE;
+	activeData : REFERENCE TO ETcVnFeatureDescriptorTypeAKAZE;
+	enumBaseDatatype : _DINT(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{e3c2003c-9251-4ed8-900d-39f30359697e}" />
+    <Folder Name="Private" Id="{d67213bc-71d4-4d61-9087-977a886b128f}" />
+    <Folder Name="Protected" Id="{e4496fd0-31bc-4363-80e1-0ec74eb3dd7d}" />
+    <Method Name="AddLocalEnumeration" Id="{3ca69007-116d-4b22-a5d5-a8de9618811b}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{d572a636-b6a1-46a1-878f-5a7a6a7b78a9}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{f95c950a-6434-4313-b45b-c205890b2f61}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{1a96b1f6-0f07-4ef3-95a2-418f13f3ff17}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{54092675-ea46-4bf9-9c2b-5f66526edf76}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_ETcVnFeatureDescriptorTypeAKAZE(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{25daeffc-1298-48f9-be24-37a307d31f10}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('TCVN_FDT_AKAZE_KAZE_UPRIGHT', ETcVnFeatureDescriptorTypeAKAZE.TCVN_FDT_AKAZE_KAZE_UPRIGHT);
+AddLocalEnumeration('TCVN_FDT_AKAZE_KAZE', ETcVnFeatureDescriptorTypeAKAZE.TCVN_FDT_AKAZE_KAZE);
+AddLocalEnumeration('TCVN_FDT_AKAZE_MLDB_UPRIGHT', ETcVnFeatureDescriptorTypeAKAZE.TCVN_FDT_AKAZE_MLDB_UPRIGHT);
+AddLocalEnumeration('TCVN_FDT_AKAZE_MLDB', ETcVnFeatureDescriptorTypeAKAZE.TCVN_FDT_AKAZE_MLDB);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{fce0a199-acb6-484e-a2d5-ce653246c872}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{15ac2d1b-dbe9-4b0a-8c90-f2cca12a37ac}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'ETcVnFeatureDescriptorTypeAKAZE';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{4d2bb46d-254f-45ed-9d36-dc879987d38b}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{699164fa-66cd-4c0d-8a54-99618a06b5fe}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{80d3e47f-0f58-480b-b631-0706acc2b3ee}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{91c42110-fb49-416b-85d0-f8e0bcaf3ff0}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{af59e205-9dcd-4910-a2dc-87aadd5a6c94}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{6ebdc4c6-3e35-4250-8ed8-e9a25d39efc7}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO ETcVnFeatureDescriptorTypeAKAZE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{ec31bbb2-3667-4508-a79b-ed6d154757a9}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : ETcVnFeatureDescriptorTypeAKAZE]]></Declaration>
+      <Get Name="Get" Id="{05047915-fd5d-46e3-a944-b66efa923ebf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e5150c69-a0e5-4bbe-9b80-ccd38d205f67}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

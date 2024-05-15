@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="_GEV_CAMERA_STATE" Id="{e9fef695-007a-4398-9c55-352aad846096}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _GEV_CAMERA_STATE EXTENDS EnumDatatypeBase
+VAR
+	localData : GEV_CAMERA_STATE;
+	activeData : REFERENCE TO GEV_CAMERA_STATE;
+	enumBaseDatatype : _BYTE(localData);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{c747a0fa-f1fc-4de5-9477-526c4fd8b41a}" />
+    <Folder Name="Private" Id="{e4906694-405d-4eca-a78e-02d8a8f16c8b}" />
+    <Folder Name="Protected" Id="{89f84400-e885-4d64-9148-1a5e0fcd4c72}" />
+    <Method Name="AddLocalEnumeration" Id="{85409592-8cee-4990-994f-d675aed0e989}" FolderPath="Private\">
+      <Declaration><![CDATA[METHOD PRIVATE AddLocalEnumeration
+VAR_INPUT
+	Enumeration : T_MAXSTRING;
+	Value : GEV_CAMERA_STATE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEnumeration(Enumeration, Value);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Address" Id="{218c15d0-3f3a-4f85-8ce2-f96c6b7d2ee9}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{9c7b313e-6aef-4dda-8c47-b602da965a44}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{a29b3f18-1e1e-4dba-8b07-fcf3d200e5a3}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{00844a4a-159d-4b2e-8456-847eeae24aea}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _GEV_CAMERA_STATE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_GEV_CAMERA_STATE(InitialValue := Value));
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{ccbb0512-900b-4b23-911c-e5e775ee9c0b}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	InitialValue : GEV_CAMERA_STATE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localData := InitialValue;
+AddBaseDatatype(enumBaseDatatype);
+ClearReference();
+
+AddLocalEnumeration('GEV_CAMERA_IDLE', GEV_CAMERA_STATE.GEV_CAMERA_IDLE);
+AddLocalEnumeration('GEV_CONTROL_CHANNEL_OPEN_MASK', GEV_CAMERA_STATE.GEV_CONTROL_CHANNEL_OPEN_MASK);
+AddLocalEnumeration('GEV_STREAM_CHANNELS_OPEN_MASK', GEV_CAMERA_STATE.GEV_STREAM_CHANNELS_OPEN_MASK);
+AddLocalEnumeration('GEV_CONTROL_CHANNEL_OPEN', GEV_CAMERA_STATE.GEV_CONTROL_CHANNEL_OPEN);
+AddLocalEnumeration('GEV_STREAM_CHANNELS_OPEN', GEV_CAMERA_STATE.GEV_STREAM_CHANNELS_OPEN);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{ec9dd00e-4b4b-4de8-a598-9546fb8031c9}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{561d2b24-9916-4a60-ab40-43e861670383}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'GEV_CAMERA_STATE';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsEnumeratorValueEqual" Id="{95c43e2b-3c9a-42d4-931c-8a017f8c6a87}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD IsEnumeratorValueEqual : BOOL
+VAR_INPUT
+	Enumerator : I_KeyValueForwardEnumerator;
+END_VAR
+VAR
+	storedValue : GEV_CAMERA_STATE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Enumerator.TryGet(storedValue) THEN
+	RETURN;
+END_IF
+
+IsEnumeratorValueEqual := storedValue = activeData;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{9653524e-af22-4942-b4d7-a6c839035f98}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO GEV_CAMERA_STATE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetBaseDatatypeReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetBaseDatatypeReference" Id="{6d2737ca-26c9-44ed-834a-aae63f4604cd}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[enumBaseDatatype.MakeReferenceTo(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{9f22da94-6b4f-4dd6-8fa6-35e2c8cbb626}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{02fdd54d-872b-4ec1-a444-dc47f8d7b5ae}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{d4aaae2c-1291-4eba-82b5-a57129c49f26}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsEnum : I_EnumDatatype;
+	pTargetData : POINTER TO GEV_CAMERA_STATE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsEnumDatatype(targetAsEnum) THEN
+	RETURN;
+END_IF
+
+IF targetAsEnum.Identifier <> Identifier THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetBaseDatatypeReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{0b9512e2-862f-44fb-a25b-669a93cbdb78}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : GEV_CAMERA_STATE]]></Declaration>
+      <Get Name="Get" Id="{214ebdde-c400-4e13-8147-6802d3403321}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := activeData;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{de40765c-fb54-4392-bc18-ca7f2c3d934a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[activeData := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
